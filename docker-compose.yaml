@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  ansible:
+    build: ./ansible/
+    tty: true
+    image: ansible
+    container_name: ansible
+    hostname: ansible
+    volumes:
+      - ./playbooks:/playbooks
+      - ./hosts:/etc/ansible/hosts
+
+  ubuntu-server:
+    build: ./ubuntu-server/
+    image: ubuntu-server
+    hostname: ubuntu-server
+    container_name: ubuntu-server
+    tty: true
+    ports:
+      - 2222:22
+      - 80:80
